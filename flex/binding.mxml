@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	applicationComplete="setValue()">
+	<mx:Panel x="20" y="23" width="457" height="200" layout="absolute" title="Binding Test" backgroundColor="#88E9E6">
+		<mx:HSlider x="114.5" y="66" width="208" minimum="0" maximum="100" snapInterval="5" tickInterval="10"
+			labels="[0%,100%]" change="changeFromSliderValue()" id="slider" 
+			value = "{d.value}" /> 
+		<mx:Label x="10" y="23" text="Valeur :" width="165"/>
+		<mx:TextInput x="267" y="23" text="{d.value}" enter="changeFromTextInputValue()" id = "textvalue" />
+		<mx:ProgressBar x="114.5" y="110" label="Valeur" labelPlacement="center" 
+			 minimum="0" maximum="100" visible="true" direction="right" 
+			 id = "progressBar" mode="manual"/>	
+		<mx:Label x="345" y="84" id="sliderCopy" />
+	</mx:Panel>
+	
+	
+	
+	<mx:Script>
+		<![CDATA[
+				
+		[Bindable]
+	    public var d:XML = 
+	     <root>
+		  <value>35</value>
+		</root>
+	    
+	     
+		public function changeFromSliderValue():void {
+		   d.value = slider.value;
+		   progressBar.setProgress(d.value,100);
+		}
+		public function setValue():void {
+			progressBar.setProgress(d.value,100);
+		}
+		public function changeFromTextInputValue():void {
+		   d.value = textvalue.text;
+		   progressBar.setProgress(d.value,100);
+		}
+		]]>
+	</mx:Script>
+	<mx:Binding source="{'Value = ' + d.value}" destination="sliderCopy.text" />
+</mx:Application>
