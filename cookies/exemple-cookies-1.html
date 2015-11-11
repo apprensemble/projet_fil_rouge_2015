@@ -1,0 +1,23 @@
+<HTML>
+<HEADER>
+<TITLE>Exemple cookies</TITLE>
+</HEADER
+
+<BODY>
+
+<SCRIPT LANGAGE="JavaScript">
+var les_cookies=document.cookie;
+document.write("<p>cookies déjà connus = " + les_cookies + "</p>");
+if ( les_cookies == "" ) {
+  document.write("<i> enchanté de faire votre connaissance</i>");
+} else {
+  document.write("<i> on se connaît déjà</i>");
+}
+
+document.cookie = "toto";
+document.write("<p> après affectation, cookies = " + document.cookie + "</p>");
+
+</SCRIPT>
+
+</BODY>
+</HTML>

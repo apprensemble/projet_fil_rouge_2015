@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookmark SYSTEM "bookmark.dtd">
+<?xml-stylesheet type = "text/xsl" href = "bookmark.xsl" ?>
+<!-- file preferiti.xml -->  
+<bookmark>
+	<moteur>
+		<url keyname = "google">http://www.google.com/</url>
+	</moteur>
+	<anglais>
+		<url keyname = "dizionario">http://www.yourdictionary.com/</url>
+	</anglais>
+	<voyage>
+		<avion>
+			<url keyname = "alitalia">http://www.alitalia.it/index.html</url>
+			<url keyname = "volare">http://www.volare-airlines.com/home/index.asp</url>
+		</avion>
+	</voyage>
+	<langage>
+		<java>
+			<url keyname = "api1.2">http://java.sun.com/products/jdk/1.2/docs/api/</url>
+			<url keyname = "jaxm">http://java.sun.com/xml/jaxm/index.html</url>
+		</java>
+		<html>
+			<url keyname = "ncsa">http://archive.ncsa.uiuc.edu/General/Internet/WWW/HTMLPrimer.html</url>
+		</html>
+	</langage>
+</bookmark>
