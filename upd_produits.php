@@ -1,15 +1,8 @@
-<HTML>
-
-
-
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link href="style.css" rel="stylesheet" media="all" type="text/css"> 
-</head>
-
-<?php
+<?php 
+/*
+ob_start();
+*/
 //définition de fonctions
-
 function upload (){
 
 $dossier = 'images/uploaded/';
@@ -19,8 +12,8 @@ $fichier_source = $_FILES['PhotoProduit']['tmp_name'];
 $taille = filesize($_FILES['PhotoProduit']['tmp_name']);
 $extensions = array('.png', '.gif', '.jpg', '.jpeg');
 $extension = strrchr($_FILES['PhotoProduit']['name'], '.'); 
-echo "jupload $fichier_source vers $dossier.$fichier";
-echo " ";
+//echo "jupload $fichier_source vers $dossier.$fichier";
+//echo " ";
 //Début des vérifications de sécurité...
 /*
 if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
@@ -44,7 +37,7 @@ if(!isset($UploadReussi)) //S'il n'y a pas d'erreur, on upload
      if(move_uploaded_file($_FILES['PhotoProduit']['tmp_name'], $dossier.$fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
 		 $UploadReussi = True; //Upload effectué avec succès';
-          echo 'Upload effectué avec succès';
+          //echo 'Upload effectué avec succès';
 		  
      }
      else //Sinon (la fonction renvoie FALSE).
@@ -154,7 +147,8 @@ $PhotoProduit= basename($_FILES['PhotoProduit']['name']);
 	}
 	
 	
-	//header('Location: /admin_produits.php');
+	header('Location: /admin_produits.php');
+exit();
 }
 
 else
@@ -196,12 +190,17 @@ else
 
 ?>
 
+<HTML>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="style.css" rel="stylesheet" media="all" type="text/css"> 
+</head>
 
 <form action="upd_produits.php?upd_id=<?php echo $upd_id; ?>" method="POST" name="formulaire" enctype="multipart/form-data">
 <input type="hidden" name="saisie_form" value="True">
 <input type="hidden" name="CodeProduit" value="<?php $CodeProduit ?>">
        
-<input type="hidden" name="MAX_FILE_SIZE" value="100000">    
+<input type="hidden" name="MAX_FILE_SIZE" value="1000000">    
 	    
 	    
 	    
@@ -399,3 +398,4 @@ else
 
 	
 </HTML>	
+<?php  //ob_end_flush(); ?>
