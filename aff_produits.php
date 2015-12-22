@@ -32,7 +32,8 @@ $PhotoProduit="";
 try
 {
 	// On se connecte à MySQL
-$bdd = new PDO('mysql:host=localhost;dbname=gestion_site;charset=utf8', 'root', 'saremi62*');
+$bdd = new PDO('mysql:host=10.7.0.1;dbname=gestion_site;charset=utf8', 'root', 'mysqlRoot.');
+
 }
 catch(Exception $e)
 {
@@ -226,7 +227,7 @@ if(!empty($_GET['aff_id'])){
 		<tr class="dmFond2">
 			<td class="dmContour2"><img src="/images/dot.gif" alt="" width="1" height="20"></td>
 			<td><img src="/images/dot.gif" alt="" width="10" height="30"></td> 
-			<td width="50%" class="dmTitre" title="" ><img src="/images/uploaded/Lumix-gf6.jpg" alt="" width="200" height="200"></td> 
+			<td width="50%" class="dmTitre" title="" ><img src="<?php echo $Dossier.$PhotoProduit ?>" alt="" width="200" height="200"></td> 
 			<td width="50%" class="dmTitre" title="" ><?php echo $PhotoProduit ?></TD> 			
 			<td><img src="/images/dot.gif" alt="" width="1" height="1"></td> 				
 			<td class="dmContour2"><img src="/images/dot.gif" alt="" width="1" height="60"></td>                 

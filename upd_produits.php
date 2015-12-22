@@ -14,11 +14,15 @@ function upload (){
 
 $dossier = 'images/uploaded/';
 $fichier = basename($_FILES['PhotoProduit']['name']);
-$taille_maxi = 100000;
+$taille_maxi = 1000000;
+$fichier_source = $_FILES['PhotoProduit']['tmp_name'];
 $taille = filesize($_FILES['PhotoProduit']['tmp_name']);
 $extensions = array('.png', '.gif', '.jpg', '.jpeg');
 $extension = strrchr($_FILES['PhotoProduit']['name'], '.'); 
+echo "jupload $fichier_source vers $dossier.$fichier";
+echo " ";
 //Début des vérifications de sécurité...
+/*
 if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
 {
      $UploadReussi = False; //'Vous devez uploader un fichier de type png, gif, jpg, jpeg'
@@ -32,11 +36,12 @@ if($taille>$taille_maxi)
 if(!isset($UploadReussi)) //S'il n'y a pas d'erreur, on upload
 {
      //On formate le nom du fichier ici...
-     $fichier = strtr($fichier, 
-          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
-          'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-     $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-     if(move_uploaded_file($_FILES['PhotoProduit']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+//     $fichier = strtr($fichier, 
+ //         'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+  //        'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+//     $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+*/
+     if(move_uploaded_file($_FILES['PhotoProduit']['tmp_name'], $dossier.$fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
 		 $UploadReussi = True; //Upload effectué avec succès';
           echo 'Upload effectué avec succès';
@@ -46,13 +51,15 @@ if(!isset($UploadReussi)) //S'il n'y a pas d'erreur, on upload
      {
           echo 'Echec de l\'upload !';
 		  $UploadReussi = False; //'Echec de l\'upload !'
-		  echo 'Echec de l\'upload !';
+		  echo 'Echec de l\'upload de '.$_FILES['PhotoProduit']['tmp_name'].' vers '.$dossier.$fichier.'!  -- '.$php_errormsg;
      }
+/*
 }
 else
 {
      echo $UploadReussi;
 }	
+*/
 	
 return $UploadReussi;
 	
@@ -81,7 +88,8 @@ $PhotoProduit="";
 try
 {
 	// On se connecte à MySQL
-$bdd = new PDO('mysql:host=localhost;dbname=gestion_site;charset=utf8', 'root', 'saremi62*');
+$bdd = new PDO('mysql:host=10.7.0.1;dbname=gestion_site;charset=utf8', 'root', 'mysqlRoot.');
+
 }
 catch(Exception $e)
 {
@@ -146,7 +154,7 @@ $PhotoProduit= basename($_FILES['PhotoProduit']['name']);
 	}
 	
 	
-	header('Location: /admin_produits.php');
+	//header('Location: /admin_produits.php');
 }
 
 else

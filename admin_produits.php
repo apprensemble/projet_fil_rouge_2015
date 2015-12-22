@@ -21,7 +21,7 @@
 try
 {
 	// On se connecte à MySQL
-$bdd = new PDO('mysql:host=localhost;dbname=gestion_site;charset=utf8', 'root', 'saremi62*');
+$bdd = new PDO('mysql:host=10.7.0.1;dbname=gestion_site;charset=utf8', 'root', 'mysqlRoot.');
 }
 catch(Exception $e)
 {
